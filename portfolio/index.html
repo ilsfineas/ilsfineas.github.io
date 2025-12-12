@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS Variables: The Monochrome Theme --- */
+        :root {
+            --bg-color: #080808;       /* Deep Black */
+            --card-bg: #141414;        /* Dark Charcoal for cards */
+            --text-main: #ffffff;      /* Pure White */
+            --text-secondary: #a1a1aa; /* Cool Gray for subtext */
+            
+            /* Button & Accent Colors */
+            --accent: #d4d4d8;         /* Silver/White for highlights */
+            --btn-bg: #27272a;         /* Dark Gray button background */
+            --btn-border: #3f3f46;     /* Slightly lighter border */
+            --btn-hover: #52525b;      /* Hover state */
+        }
+
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+
+            /* --- ZOOM SETTINGS --- */
+            zoom: 80%; /* Chrome, Edge, Safari */
+            
+            /* Firefox Fallback (Firefox doesn't support 'zoom') */
+            -moz-transform: scale(0.8);
+            -moz-transform-origin: top center;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s ease;
+        }
+
+        /* --- Layout Container --- */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            padding: 5rem 0;
+        }
+
+        /* --- Hero / Profile Section --- */
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--btn-border);
+            margin-bottom: 1.5rem;
+            /* Subtle white glow */
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .title {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .bio {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            font-weight: 300;
+        }
+
+        /* --- Social Links --- */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .social-icon:hover {
+            color: var(--text-main);
+            transform: translateY(-3px);
+        }
+
+        /* --- CV Button (Gray Style) --- */
+        .btn-cv {
+            display: inline-block;
+            background-color: var(--btn-bg);
+            color: var(--text-main);
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 1px solid var(--btn-border);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-cv:hover {
+            background-color: var(--btn-hover);
+            border-color: var(--text-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- Projects Grid --- */
+        .section-title {
+            font-size: 1.5rem;
+            border-left: 3px solid var(--text-main);
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+            color: var(--text-main);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--btn-border);
+            transition: 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--text-secondary);
+            background-color: #1a1a1a; /* Slightly lighter on hover */
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            color: var(--text-main);
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* --- Tags (Gray Style) --- */
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: #27272a; /* Dark gray bg */
+            color: #d4d4d8;            /* Light gray text */
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid #3f3f46;
+        }
+
+        .project-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .project-links a:hover {
+            color: var(--text-main);
+            text-decoration: underline;
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: auto;
+            padding: 2rem;
+            color: #52525b; /* Darker gray for footer */
+            font-size: 0.85rem;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Mobile Tweaks --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .container { width: 92%; padding: 3rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <img src="images/image.png" alt ="Profile Photo" class="profile-img">
+            
+            <h1>Ilisoi Fineas</h1>
+            <p class="title">Software Engineer</p>
+            
+            <p class="bio">
+                
+            </p>
+
+            <div class="social-links">
+                <a href="https://github.com/ilsfineas" target="_blank" class="social-icon" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/ilisoifineas/" target="_blank" class="social-icon" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:fineasilisoi1@gmail.com" class="social-icon" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+
+            <a href="cv.html" target="_blank" class="btn-cv">
+                Download CV <i class="fas fa-download" style="margin-left: 8px;"></i>
+            </a>
+        </header>
+
+        <section id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <h3>Title1</h3>
+                    <p>description</p>
+                    <div class="project-tags">
+                        <span class="tag">elements</span>
+                        <span class="tag">used</span>
+                        <span class="tag">ex.</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i> View Code</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Title2</h3>
+                    <p>desc</p>
+                    <div class="project-tags">
+                        <span class="tag">elements</span>
+                        <span class="tag">example</span>
+                        <span class="tag">ex</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i> View Code</a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Title3</h3>
+                    <p>desc</p>
+                    <div class="project-tags">
+                        <span class="tag">other</span>
+                        <span class="tag">example</span>
+                        <span class="tag">ex</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; 2025 Ilisoi Fineas.
+    </footer>
+
+</body>
+</html>
